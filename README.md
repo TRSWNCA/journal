@@ -6,7 +6,7 @@
 
 **pandas plot**
 
-Use pandas to draw pic
+Use pandas to draw picture
 
 ```python
 #/usr/bin/python
@@ -34,4 +34,34 @@ train_set.plot(title = 'IWAU-Net diceloss', legend = True, label = 'train dicelo
 test_set.plot(legend = True, label = 'test diceloss')
 
 plt.savefig('result.png')
+```
+
+**count down helper**
+
+In order to train my coding speed, write a count down helper.
+
+Think twice code once.
+
+```python
+#!/usr/bin/python3                                                                                                      
+# -*- coding: UTF-8 -*-                                                                                         
+import time  
+import shutil                                                                                                           
+                                                                                                                       
+def countdown(m):
+    colums = shutil.get_terminal_size().columns                                                                         
+    m = int(m)                                                                                                          
+    for minute in range(m, -1, -1):                                                                                     
+        if minute == 0:                                                                      
+            break                                                        
+        for second in range(59, -1, -1):                                                                               
+            time.sleep(1)  
+            sys.stdout.write("\r")                       
+            sys.stdout.write(('{}:{}'.format(minute-1, second)).center(colums))                                         
+            sys.stdout.flush()                                                                                         
+                                                                                                                        
+    sys.stdout.write(('END')).center(colums))                                                                           
+                                                                                                                        
+if __name__ == '__main__':                                                                                              
+    countdown(sys.argv[1])
 ```
