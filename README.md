@@ -65,3 +65,11 @@ def countdown(m):
 if __name__ == '__main__':                                                                                              
     countdown(sys.argv[1])
 ```
+
+### 5.24
+
+Install Latex on Ubuntu 18.04:
+
+```bash
+sudo apt-get install texlive-full
+```
