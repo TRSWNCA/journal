@@ -73,3 +73,42 @@ Install Latex on Ubuntu 18.04:
 ```bash
 sudo apt-get install texlive-full
 ```
+
+### 5.26
+
+Program to help merge to excel form.
+
+Use `pandas` and its data frame to work.
+
+```python
+import pandas as pd
+import os
+pathDir = os.listdir('data')
+
+def solve(filename):
+    global al
+    print("On: ", filename)
+    fi = pd.read_excel('data/' + filename, index_col = 1) #, converters = {'学号' : str})
+    stu = fi.index
+    teacher = filename.split('.')[0]
+    for person in stu:
+        print(person)
+        al.loc[person, '最终成绩'] = fi.loc[person, '最终成绩'] #fi.loc[person, '最终成绩']
+        al.loc[person, '批卷人'] = teacher
+
+    print("Read: ", fi.shape)
+
+
+if __name__ == '__main__':
+    global al
+    al = pd.read_excel('2021毕业学生名单.xls', index_col = 0) #, converters = {'学号' : str})
+    al['批卷人'] = 'unkown'
+    for x in pathDir:
+        solve(x)
+    writer = pd.ExcelWriter('result.xls')
+    al.to_excel(writer)
+    writer.save()
+
+```
+
+However its converters dont work.
