@@ -60,7 +60,7 @@ def countdown(m):
             sys.stdout.write(('{}:{}'.format(minute-1, second)).center(colums))                                         
             sys.stdout.flush()                                                                                         
                                                                                                                         
-    sys.stdout.write(('END')).center(colums))                                                                           
+    sys.stdout.write(('END').center(colums))                                                                           
                                                                                                                         
 if __name__ == '__main__':                                                                                              
     countdown(sys.argv[1])
@@ -76,7 +76,7 @@ sudo apt-get install texlive-full
 
 ### 5.26
 
-Program to help merge to excel form.
+Program to help merge excel forms.
 
 Use `pandas` and its data frame to work.
 
