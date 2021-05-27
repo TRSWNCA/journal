@@ -80,6 +80,13 @@ Program to help merge excel forms.
 
 Use `pandas` and its data frame to work.
 
+To read .xlsx need to use xrld <= 1.2.0
+
+```bash
+pip uninstall xlrd
+pip install xlrd==1.2.0
+```
+
 ```python
 import pandas as pd
 import os
@@ -111,4 +118,4 @@ if __name__ == '__main__':
 
 ```
 
-However its converters dont work.
+However its converters dont work, use dtype to replace it.
