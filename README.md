@@ -119,3 +119,31 @@ if __name__ == '__main__':
 ```
 
 However its converters dont work, use dtype to replace it.
+
+### 5.28
+
+Prepare for the zhihuishu
+
+repo: github/trswnca/zhihuishu
+
+### 5.30
+
+config vue's axios setting. To differ the json request and the form data request
+
+```javascript
+axios.interceptors.request.use(
+  config => {
+    let token = localStorage.getItem('token')
+    if (token) {
+      config.headers.common['Authentication-Token'] = token
+    }
+    if (config.useQs) {
+      config.data = qs.stringify(config.data)
+    }
+    return config
+  },
+  err => {
+    return Promise.reject(err)
+  }
+)
+```
