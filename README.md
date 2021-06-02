@@ -190,7 +190,7 @@ I realized that async/await is the core concept that the Javascript held.
 
 When we want to do things step by step, we need to let it be a Promise. And:
 
-``javascript
+```javascript
 async function doRequests(requests) {
     for(let r of requests) {
         let result = await r
