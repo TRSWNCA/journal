@@ -147,3 +147,22 @@ axios.interceptors.request.use(
   }
 )
 ```
+
+
+# 6.2
+
+When I instsall some packages with perl dependency, the error warning:
+
+```bash
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_COLLATE = "C",
+	LANG = "zh_CN.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+```
+
+so I just `export LC_AL=C`
+
+The latex package manager `tlmgr` is not supported for the Linux distros. According to the [Wiki](https://wiki.archlinux.org/title/TeX_Live), I install `tllocalmgr`.
