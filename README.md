@@ -149,7 +149,9 @@ axios.interceptors.request.use(
 ```
 
 
-# 6.2
+### 6.2
+
+#### Latex
 
 When I instsall some packages with perl dependency, the error warning:
 
@@ -166,3 +168,63 @@ perl: warning: Falling back to the standard locale ("C").
 so I just `export LC_AL=C`
 
 The latex package manager `tlmgr` is not supported for the Linux distros. According to the [Wiki](https://wiki.archlinux.org/title/TeX_Live), I install `tllocalmgr`.
+
+#### Shell & Gitlab
+
+To delete dozens of Project, I wrote a shell.
+
+Firstly, get the token from the gitlab.
+
+```bash
+#!/bin/bash
+
+for ((i = 146; i <= 175; ++i));
+do
+  curl -X DELETE "http://192.168.1.6/api/v4/projects/"$i"?private_token=NAM-bxCucwHxuZtjGsEH"
+done
+```
+
+#### Javascript
+
+I realized that async/await is the core concept that the Javascript held.
+
+When we want to do things step by step, we need to let it be a Promise. And:
+
+``javascript
+async function doRequests(requests) {
+    for(let r of requests) {
+        let result = await r
+        console.log(result)
+    }  
+}
+```
+
+And for the axios's series, just:
+
+```javascript
+      let YML = await this.$http.post("/api/function/saveFile", {
+          fileContent: ymlFile, 
+          relativePath: "/deploy.yml",
+          functionName: this.myFunction.name,
+        }).then(res => {
+          console.log("YML生成：", res.message)
+        })
+
+      // 提交数据库
+      let NEWDATABASE = await
+        this.$http.post('/api/contribute/new/v2', {
+          category: this.myFunction.category,
+          description: this.myFunction.introduction ,
+          id: gitlab_id,
+          lang: this.myFunction.lang ,
+          memory: 40,
+          name: this.myFunction.name ,
+          params: "", //this.params,
+          realName: "",
+          timeout: 40
+      }).then(res => {
+        this.$message("数据库生成：", res.data.message)
+      })
+      ...
+      doRequests([NEWFOLDER, GITLAB, YML, NEWDATABASE, GETCODE, ROUTE])
+```
