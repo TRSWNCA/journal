@@ -228,3 +228,15 @@ And for the axios's series, just:
       ...
       doRequests([NEWFOLDER, GITLAB, YML, NEWDATABASE, GETCODE, ROUTE])
 ```
+
+
+### 6.10
+
+Nginx
+
+```bash
+# find config location (or) test config file
+nginx -t
+# reload nginx
+nginx -s reload
+```
