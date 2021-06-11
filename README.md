@@ -240,3 +240,22 @@ nginx -t
 # reload nginx
 nginx -s reload
 ```
+
+### 6.11
+
+Install Go
+
+Download latest one [Golang](https://golang.google.cn/doc/install?download=go1.16.5.linux-amd64.tar.gz)
+
+```bash
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.14.3.linux-amd64.tar.gz
+echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.profile && source ~/.profile
+```
+
+Use goproxy.cn to accelerate
+
+```bash
+go env -w GO111MODULE=on
+go env -w GOPROXY=https://goproxy.cn,direct
+echo "export GOPROXY=https://goproxy.cn" >> ~/.profile && source ~/.profile
+```
