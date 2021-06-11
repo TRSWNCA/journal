@@ -4,7 +4,7 @@
 
 ### 5.23
 
-**pandas plot**
+#### pandas plot
 
 Use pandas to draw picture
 
@@ -36,7 +36,7 @@ test_set.plot(legend = True, label = 'test diceloss')
 plt.savefig('result.png')
 ```
 
-**count down helper**
+#### count down helper
 
 In order to train my coding speed, write a count down helper.
 
@@ -68,6 +68,8 @@ if __name__ == '__main__':
 
 ### 5.24
 
+#### Latex
+
 Install Latex on Ubuntu 18.04:
 
 ```bash
@@ -75,6 +77,8 @@ sudo apt-get install texlive-full
 ```
 
 ### 5.26
+
+#### Pandas
 
 Program to help merge excel forms.
 
@@ -128,6 +132,7 @@ repo: github/trswnca/zhihuishu
 
 ### 5.30
 
+#### Vue
 config vue's axios setting. To differ the json request and the form data request
 
 ```javascript
@@ -232,7 +237,7 @@ And for the axios's series, just:
 
 ### 6.10
 
-Nginx
+#### Nginx
 
 ```bash
 # find config location (or) test config file
@@ -243,7 +248,7 @@ nginx -s reload
 
 ### 6.11
 
-Install Go
+#### Go
 
 Download latest one [Golang](https://golang.google.cn/doc/install?download=go1.16.5.linux-amd64.tar.gz)
 
