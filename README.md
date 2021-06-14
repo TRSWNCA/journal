@@ -264,3 +264,54 @@ go env -w GO111MODULE=on
 go env -w GOPROXY=https://goproxy.cn,direct
 echo "export GOPROXY=https://goproxy.cn" >> ~/.profile && source ~/.profile
 ```
+
+### 6.14
+
+#### Go
+```bash
+$ go build foo/bar/baz
+package foo/bar/baz is not in GOROOT (/usr/local/go/src/foo/bar/baz)
+$ go env              
+GO111MODULE="on"
+GOARCH="amd64"
+GOBIN=""
+GOCACHE="/home/trswnca/.cache/go-build"
+GOENV="/home/trswnca/.config/go/env"
+GOEXE=""
+GOFLAGS=""
+GOHOSTARCH="amd64"
+GOHOSTOS="linux"
+GOINSECURE=""
+GOMODCACHE="/home/trswnca/go/pkg/mod"
+GONOPROXY=""
+GONOSUMDB=""
+GOOS="linux"
+GOPATH="/home/trswnca/go/"
+GOPRIVATE=""
+GOPROXY="https://goproxy.cn,direct"
+GOROOT="/usr/local/go"
+GOSUMDB="sum.golang.org"
+GOTMPDIR=""
+GOTOOLDIR="/usr/local/go/pkg/tool/linux_amd64"
+GOVCS=""
+GOVERSION="go1.16.5"
+GCCGO="gccgo"
+AR="ar"
+CC="gcc"
+CXX="g++"
+CGO_ENABLED="1"
+GOMOD="/dev/null"
+CGO_CFLAGS="-g -O2"
+CGO_CPPFLAGS=""
+CGO_CXXFLAGS="-g -O2"
+CGO_FFLAGS="-g -O2"
+CGO_LDFLAGS="-g -O2"
+PKG_CONFIG="pkg-config"
+GOGCCFLAGS="-fPIC -m64 -pthread -fmessage-length=0 -fdebug-prefix-map=/tmp/go-build775828347=/tmp/go-build -gno-record-gcc-switches"
+```
+
+Just turn off the `GO111MODULE="on"` to include $GOPATH
+
+```bash
+$ go env -w GO111MODULE=off   
+```
