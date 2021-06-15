@@ -315,3 +315,22 @@ Just turn off the `GO111MODULE="on"` to include $GOPATH
 ```bash
 $ go env -w GO111MODULE=off   
 ```
+
+
+### 6.15
+
+#### Go & Vscode
+
+Enable the go autocomplete, Add:
+
+```json
+{
+  "go.autocompleteUnimportedPackages": true,
+  "go.gocodePackageLookupMode": "go",
+  "go.gotoSymbol.includeImports": true,
+  "go.useCodeSnippetsOnFunctionSuggest": true,
+  "go.inferGopath": true,
+  "go.gopath": "/home/trswnca/go",
+  "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
+}
+```
