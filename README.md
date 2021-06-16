@@ -73,7 +73,7 @@ if __name__ == '__main__':
 Install Latex on Ubuntu 18.04:
 
 ```bash
-sudo apt-get install texlive-full
+$ sudo apt-get install texlive-full
 ```
 
 ### 5.26
@@ -87,8 +87,8 @@ Use `pandas` and its data frame to work.
 To read .xlsx need to use xrld <= 1.2.0
 
 ```bash
-pip uninstall xlrd
-pip install xlrd==1.2.0
+$ pip uninstall xlrd
+$ pip install xlrd==1.2.0
 ```
 
 ```python
@@ -253,16 +253,16 @@ nginx -s reload
 Download latest one [Golang](https://golang.google.cn/doc/install?download=go1.16.5.linux-amd64.tar.gz)
 
 ```bash
-rm -rf /usr/local/go && tar -C /usr/local -xzf go1.14.3.linux-amd64.tar.gz
-echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.profile && source ~/.profile
+$ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.14.3.linux-amd64.tar.gz
+$ echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.profile && source ~/.profile
 ```
 
 Use goproxy.cn to accelerate
 
 ```bash
-go env -w GO111MODULE=on
-go env -w GOPROXY=https://goproxy.cn,direct
-echo "export GOPROXY=https://goproxy.cn" >> ~/.profile && source ~/.profile
+$ go env -w GO111MODULE=on
+$ go env -w GOPROXY=https://goproxy.cn,direct
+$ echo "export GOPROXY=https://goproxy.cn" >> ~/.profile && source ~/.profile
 ```
 
 ### 6.14
@@ -313,7 +313,7 @@ GOGCCFLAGS="-fPIC -m64 -pthread -fmessage-length=0 -fdebug-prefix-map=/tmp/go-bu
 Just turn off the `GO111MODULE="on"` to include $GOPATH
 
 ```bash
-$ go env -w GO111MODULE=off   
+$ go env -w GO111MODULE=auto  
 ```
 
 
