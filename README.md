@@ -334,3 +334,14 @@ Enable the go autocomplete, Add:
   "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
 }
 ```
+
+### 7.3
+
+#### Mysql
+
+Install mysql on Ubuntu:
+
+```bash
+$ sudo apt install mysql-server
+```
+
