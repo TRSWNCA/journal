@@ -345,3 +345,29 @@ Install mysql on Ubuntu:
 $ sudo apt install mysql-server
 ```
 
+### Ssh & Server
+
+See which port for ssh
+
+```bash
+$ netstat -tnlp | grep sshd
+```
+
+Config the Flowing `~/.ssh/config`
+
+```
+Host TX
+  HostName 49.232.70.168
+  Port 22022
+  User root
+
+Host AliBlogServer
+  HostName 8.141.68.129
+  Port 22
+  User root
+```
+
+And upload the public key:
+```bash
+$ ssh-copy-id -p22022 root@49.232.70.168
+```
