@@ -525,3 +525,11 @@ map <F5> : call Debug() <CR>
 map <F6> : call Run() <CR>
 map <F2> : ! python3 % <CR>
 ```
+
+# 7.23
+
+CUPS printers do not autoscale.
+
+```bash
+Option fitplot True
+```
