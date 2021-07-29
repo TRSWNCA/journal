@@ -345,7 +345,7 @@ Install mysql on Ubuntu:
 $ sudo apt install mysql-server
 ```
 
-### Ssh & Server
+#### Ssh & Server
 
 See which port for ssh
 
@@ -372,9 +372,9 @@ And upload the public key:
 $ ssh-copy-id -p22022 root@49.232.70.168
 ```
 
-## 7.7
+### 7.7
 
-### Update Vimrc
+#### Update Vimrc
 
 ```vimscript
 " Plugins
@@ -526,10 +526,24 @@ map <F6> : call Run() <CR>
 map <F2> : ! python3 % <CR>
 ```
 
-# 7.23
+### 7.23
+
+#### CUPS
 
 CUPS printers do not autoscale.
 
 ```bash
 Option fitplot True
+```
+
+### 7.29
+
+#### Selenium
+
+Install Selenium on my CentOS:
+
+```bash
+$ wget https://npm.taobao.org/mirrors/chromedriver/88.0.4324.27/chromedriver_linux64.zip
+$ unzip chromedriver_linux64.zip
+$ chmod 755 chromedriver
 ```
