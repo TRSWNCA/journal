@@ -547,3 +547,84 @@ $ wget https://npm.taobao.org/mirrors/chromedriver/88.0.4324.27/chromedriver_lin
 $ unzip chromedriver_linux64.zip
 $ chmod 755 chromedriver
 ```
+
+### 8.1
+
+#### Latex
+
+Add style file:
+
+```tex
+
+
+\newlength{\thelinewidth}
+\thelinewidth=\textwidth
+
+\newlength{\exmpwidinf}
+\newlength{\exmpwidouf}
+
+
+\exmpwidinf=0.43\thelinewidth
+\exmpwidouf=0.43\thelinewidth
+
+
+\def\s@tm@cr@s{
+    \def\widthin##1{\exmpwidinf=##1\relax}
+    \def\widthout##1{\exmpwidouf=##1\relax}
+    \def\stretchin##1{\advance\exmpwidinf by ##1\relax}
+    \def\stretchout##1{\advance\exmpwidouf by ##1\relax}
+    \@ifstar{
+        \error Star must not be used in example environment any more
+    }
+}
+
+%% Example with counter
+\newenvironment{example}[1][]{
+
+  \par\noindent \paragraph*{样例}$ $  \\
+    %\s@tm@cr@s
+    \ttfamily\obeylines\obeyspaces\frenchspacing
+    \newcommand{\exmp}[2]{
+        \begin{minipage}[t]{\exmpwidinf}\rightskip=0pt plus 1fill\relax##1\medskip\end{minipage}&
+        \begin{minipage}[t]{\exmpwidouf}\rightskip=0pt plus 1fill\relax##2\medskip\end{minipage}\\
+        \hline
+    }
+
+    \newcommand{\exmpfile}[2]{
+       \exmp{
+          \verbatiminput{##1}
+       }{
+          \verbatiminput{##2}
+       }%%
+    }
+
+
+    \begin{tabular}{|l|l|}
+        \hline
+        \multicolumn{1}{|c|}{\bf\texttt{Input}}&
+        \multicolumn{1}{|c|}{\bf\texttt{Output}}\\
+        \hline
+        }{
+    \end{tabular}%
+}
+```
+
+So we should use that like this:
+
+```tex
+\begin{example}
+	\exmp{
+        6
+        8555 3 2
+        2
+        4815 0 0
+        2999 3 3
+        0
+	}{
+	0.00
+	291.90
+	}%
+\end{example}
+```
+
+should notice that the  `%` should not miss.
