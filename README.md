@@ -628,3 +628,45 @@ So we should use that like this:
 ```
 
 should notice that the  `%` should not miss.
+
+### 8.2
+
+#### Pandas
+
+DataFrame's row :
+
+```python
+import pandas as pd
+import os
+
+def solve(filename):
+    global al
+    print("On: ", filename)
+    fi = pd.read_excel(filename, index_col = 0) 
+    stu = fi.index
+    #print(stu)
+    for person in stu:
+        try:
+            fi.loc[person, '学院'] = al.loc[person, '学院']
+            fi.loc[person, '学号'] = al.loc[person, '学号']
+            fi.loc[person, '联系电话'] = al.loc[person, '联系电话']
+        except:
+            try:
+                all_can = al.loc[person]
+                for index, row in all_can.iterrows():
+                    if (row['居住地址'] == fi.loc[person, '居住地址'] or row['户籍地址'] == fi.loc[person, '户籍地址']):
+                        fi.loc[person, '学院'] = row['学院']
+                        fi.loc[person, '学号'] = row['学号']
+                        fi.loc[person, '联系电话'] = row['联系电话']
+            except:
+                print(person, "Not Found")
+
+    writer = pd.ExcelWriter('res' + filename)
+    fi.to_excel(writer)
+    writer.save()
+
+if __name__ == '__main__':
+    global al
+    al = pd.read_excel('all2.xls', index_col = 2)
+    solve("q.xls")
+```
