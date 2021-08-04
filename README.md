@@ -670,3 +670,19 @@ if __name__ == '__main__':
     al = pd.read_excel('all2.xls', index_col = 2)
     solve("q.xls")
 ```
+
+### 8.5
+
+#### Vue
+
+```
+error  in ./src/views/Home.vue?vue&type=style&index=0&lang=less&
+Syntax Error: TypeError: this.getOptions is not a function
+```
+
+Because my version of less is too high.
+
+```bash
+npm uninstall --save less-loader
+npm install -D less-loader@7.3.0
+```
