@@ -686,3 +686,13 @@ Because my version of less is too high.
 npm uninstall --save less-loader
 npm install -D less-loader@7.3.0
 ```
+### 8.6
+
+#### Latex
+
+Use straight signle quote
+
+```tex
+\usepackage{textcomp}
+\lstset{upquote=true}
+```
