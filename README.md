@@ -696,3 +696,36 @@ Use straight signle quote
 \usepackage{textcomp}
 \lstset{upquote=true}
 ```
+
+### 8.8
+
+#### Proxy
+
+Install `proxychains` to reset the proxy:
+
+```bash
+$ sudo pacman -S proxychains-ng 
+```
+
+Edit the configuration on `/etc/proxychains.conf`:
+
+```
+- socks4 	127.0.0.1 1950
++ socks5 	127.0.0.1 20170
+```
+
+Test:
+
+```bash
+$ proxychains curl ip.cn                                    
+[proxychains] config file found: /etc/proxychains.conf
+[proxychains] preloading /usr/lib/libproxychains4.so
+[proxychains] DLL init: proxychains-ng 4.15
+[proxychains] Strict chain  ...  127.0.0.1:20170  ...  ip.cn:80  ...  OK
+```
+
+Set for terminal, edit .zshrc:
+
+```bash
+alias pc="proxychains"
+```
