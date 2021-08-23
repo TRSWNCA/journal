@@ -729,3 +729,24 @@ Set for terminal, edit .zshrc:
 ```bash
 alias pc="proxychains"
 ```
+
+### 8.23
+
+#### termite & ssh
+
+When Termite is used for SSH connections to a remote system which does not have its Terminfo, various issues (such as non-working backspace and weird cursor behaviour) could happen. The solution is to send your Terminfo to the remote host.
+
+On the local host, using Termite:
+
+```bash
+$ infocmp > termite.terminfo  # export Termite's Terminfo
+$ scp termite.terminfo user@remote-host:~/  # or any other method to copy to the remote host
+```
+
+On the remote host, in the directory where you copied termite.terminfo:
+
+```bash
+$ tic -x termite.terminfo  # import Terminfo for current user
+$ rm termite.terminfo  # optional: remove Terminfo file
+$ exit # close this session
+```
