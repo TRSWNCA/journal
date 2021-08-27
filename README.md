@@ -750,3 +750,16 @@ $ tic -x termite.terminfo  # import Terminfo for current user
 $ rm termite.terminfo  # optional: remove Terminfo file
 $ exit # close this session
 ```
+
+
+### 8.27
+
+#### Recover /var/lib/dpkg
+
+```bash
+$ sudo mkdir -p /var/lib/dpkg/{alternatives,info,parts,triggers,updates}
+$ sudo cp /var/backups/dpkg.status.0 /var/lib/dpkg/status
+$ apt download dpkg base-files
+$ sudo dpkg -i *.deb
+$ dpkg --audit
+```
