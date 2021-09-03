@@ -763,3 +763,13 @@ $ apt download dpkg base-files
 $ sudo dpkg -i *.deb
 $ dpkg --audit
 ```
+
+### 9.3
+
+#### Use Astyle to format cpp code
+
+Add ft command:
+
+```bash
+alias ft="astyle --style=google -t2 -p -H -U -k1"
+```
