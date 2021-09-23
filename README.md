@@ -773,3 +773,14 @@ Add ft command:
 ```bash
 alias ft="astyle --style=google -t2 -p -H -U -k1"
 ```
+
+### 9.23
+
+#### Rename the git tag
+
+```bash
+$ git tag newtagname oldtagname # build new tag at the same position
+$ git -d oldtagname # delete local old tag 
+$ git push origin :refs/tags/oldtagname # delete remote old tag
+$ git push --tags # upload the new tag
+```
