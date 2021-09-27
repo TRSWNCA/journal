@@ -784,3 +784,19 @@ $ git -d oldtagname # delete local old tag
 $ git push origin :refs/tags/oldtagname # delete remote old tag
 $ git push --tags # upload the new tag
 ```
+
+### 9.27
+
+#### Solve problems oreignted by icu package
+
+```bash
+$ pamac update
+pamac: error while loading shared libraries: libicuuc.so.68: cannot open shared object file: No such file or directory
+
+# Solution:
+$ sudo mkdir -p ~/pkg/tmp && tar -I zstd -xvf /var/cache/pacman/pkg/icu-68.2-1-x86_64.pkg.tar.zst -C ~/pkg/tmp
+$ sudo mkdir -p ~/pkg/tmp && tar -I zstd -xvf /var/cache/pacman/pkg/icu-69.1-1-x86_64.pkg.tar.zst -C ~/pkg/tmp
+$ sudo cp ~/pkg/tmp/usr/lib/libicu*.68 /usr/lib/
+$ sudo cp ~/pkg/tmp/usr/lib/libicu*.69 /usr/lib/
+```
+
