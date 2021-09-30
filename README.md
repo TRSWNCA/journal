@@ -800,3 +800,13 @@ $ sudo cp ~/pkg/tmp/usr/lib/libicu*.68 /usr/lib/
 $ sudo cp ~/pkg/tmp/usr/lib/libicu*.69 /usr/lib/
 ```
 
+### 9.30
+
+#### RAM
+
+For some reason my system only detects 5.71G out of the 8G I've actually got installed on my laptop.
+My BIOS detects the 8G of RAM I've got installed (so did my old Windows install), and the BIOS memory test doesn't show any errors.
+
+I had my doubts about the old ram I had, so I bought two new sticks of 8G each. Turns out, instead of having 16G, I have 13.6G of RAM, so something weird is going on here.
+
+THAT IS BECAUSE 2GB go to the APU, 437MB are reserved for other purposes. LAPTOP PROBLEM.
