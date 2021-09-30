@@ -810,3 +810,13 @@ My BIOS detects the 8G of RAM I've got installed (so did my old Windows install)
 I had my doubts about the old ram I had, so I bought two new sticks of 8G each. Turns out, instead of having 16G, I have 13.6G of RAM, so something weird is going on here.
 
 THAT IS BECAUSE 2GB go to the APU, 437MB are reserved for other purposes. LAPTOP PROBLEM.
+
+#### Pip
+
+Pip installed but show command not found
+
+Beacuse my python work on my own path, just export it:
+
+```bash
+export PATH=$PATH:/home/trswnca/.local/bin
+```
