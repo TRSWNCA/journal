@@ -820,3 +820,30 @@ Beacuse my python work on my own path, just export it:
 ```bash
 export PATH=$PATH:/home/trswnca/.local/bin
 ```
+
+#### Shell
+
+Extented  complie:
+
+```
+compile() {
+  ext=${1##*.}
+  fame=${1%.*}
+  if [ $1 != $fame ]
+  then
+    echo "g++ $1 -o $fame -DLOCAL -g -Wall -Wextra"
+    g++ $1 -o $fame -DLOCAL -g -Wall -Wextra
+  elif [[ -a $1.cpp ]]
+  then
+    echo "g++ $1.cpp -o $1 -DLOCAL -g -Wall -Wextra"
+    g++ $1.cpp -o $1 -DLOCAL -g -Wall -Wextra
+  elif [[ -a $1.cc ]]
+  then
+    echo "g++ $1.cc -o $1 -DLOCAL -g -Wall -Wextra"
+    g++ $1.cc -o $1 -DLOCAL -g -Wall -Wextra
+  else
+    echo "No Such file!"
+  fi
+}
+```
+
