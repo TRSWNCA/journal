@@ -847,4 +847,19 @@ compile() {
 }
 ```
 
+### 10.20
+
+#### Accelerate the vim-plug
+
+Edit `plug.vim`:
+
+```
+- let fmt = get(g:, 'plug_url_format', 'https://git::@github.com/%s.git')
++ let fmt = get(g:, 'plug_url_format', 'https://git::@hub.fastgit.org/%s.git')
+
+- \ '^https://git::@github\.com', 'https://github.com', '')
++ \ '^https://git::@hub.fastgit\.org', 'https://hub.fastgit.org', '')
+```
+
+
 
