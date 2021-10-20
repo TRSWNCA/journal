@@ -861,5 +861,16 @@ Edit `plug.vim`:
 + \ '^https://git::@hub.fastgit\.org', 'https://hub.fastgit.org', '')
 ```
 
+#### Options for neovim installation
 
+```reg
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\y Open with nvim]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\y Open with nvim\command]
+@="D:\\Softwares\\nvim-win64\\Neovim\\bin\\nvim-qt.exe \"%1\""
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell\y Open with nvim]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell\y Open with nvim\command]
+@="D:\\Softwares\\nvim-win64\\Neovim\\bin\\nvim-qt.exe \"%1\""
+```
 
