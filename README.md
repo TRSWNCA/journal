@@ -888,3 +888,8 @@ Windows Registry Editor Version 5.00
 @="\"C:\\tools\\neovim\\Neovim\\bin\\nvim-qt.exe\" \"%v\""
 ```
 
+### 10.21
+
+#### Goland with WSL2
+
+`Setting -> Terminal -> Shell Path` use `wsl.exe`  
