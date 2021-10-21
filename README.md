@@ -866,11 +866,25 @@ Edit `plug.vim`:
 ```reg
 Windows Registry Editor Version 5.00
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\y Open with nvim]
-[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\y Open with nvim\command]
-@="D:\\Softwares\\nvim-win64\\Neovim\\bin\\nvim-qt.exe \"%1\""
-[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell\y Open with nvim]
-[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell\y Open with nvim\command]
-@="D:\\Softwares\\nvim-win64\\Neovim\\bin\\nvim-qt.exe \"%1\""
+[HKEY_CLASSES_ROOT\*\shell\nvim-qt]
+@="Open Neovim"
+"Icon"="\"C:\\tools\\neovim\\Neovim\\bin\\nvim-qt.exe\""
+
+[HKEY_CLASSES_ROOT\*\shell\nvim-qt\command]
+@="\"C:\\tools\\neovim\\Neovim\\bin\\nvim-qt.exe\" \"%1\""
+
+[HKEY_CLASSES_ROOT\Directory\shell\nvim-qt]
+@="Open Neovim Here"
+"Icon"="\"C:\\tools\\neovim\\Neovim\\bin\\nvim-qt.exe\""
+
+[HKEY_CLASSES_ROOT\Directory\shell\nvim-qt\command]
+@="\"C:\\tools\\neovim\\Neovim\\bin\\nvim-qt.exe\" \"%1\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\nvim-qt]
+@="&Neovim here"
+"Icon"="\"C:\\tools\\neovim\\Neovim\\bin\\nvim-qt.exe\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\nvim-qt\command]
+@="\"C:\\tools\\neovim\\Neovim\\bin\\nvim-qt.exe\" \"%v\""
 ```
 
