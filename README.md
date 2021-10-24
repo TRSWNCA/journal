@@ -893,3 +893,10 @@ Windows Registry Editor Version 5.00
 #### Goland with WSL2
 
 `Setting -> Terminal -> Shell Path` use `wsl.exe`  
+
+### 10.24
+
+#### Vercel
+
+Add environment variable at vercel.com
+Regenerate the token **Only occur once and on generation**
