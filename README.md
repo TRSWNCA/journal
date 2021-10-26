@@ -900,3 +900,89 @@ Windows Registry Editor Version 5.00
 
 Add environment variable at vercel.com
 Regenerate the token **Only occur once and on generation**
+
+### 10.26
+
+#### OSS
+
+Download all oss files from aliyun:
+
+```python
+# encoding=utf8
+import oss2
+import os
+
+endpoint = "oss-cn-shenzhen.aliyuncs.com"
+accesskey_id = "LT*P"
+accesskey_secret = "Rh*"
+bucket_name = "breaktech"
+
+# 本地文件保存路径前缀
+download_local_save_prefix = "/mnt/e/"
+
+'''
+列举prefix全部文件
+'''
+
+
+def prefix_all_list(bucket, prefix):
+    print("开始列举" + prefix)
+    oss_file_size = 0
+    for obj in oss2.ObjectIterator(bucket, prefix='%s/' % prefix):
+        oss_file_size = oss_file_size + 1
+        download_to_local(bucket, obj.key, obj.key)
+
+    print(prefix + " file size " + str(oss_file_size))
+
+
+'''
+列举全部的根目录文件夹、文件
+'''
+
+
+def root_directory_list(bucket):
+    # 设置Delimiter参数为正斜线（/）。
+    num = 0
+    for obj in oss2.ObjectIterator(bucket, delimiter='/'):
+        # 通过is_prefix方法判断obj是否为文件夹。
+        if obj.is_prefix():  # 文件夹
+            print('directory: ' + obj.key)
+            prefix_all_list(bucket, str(obj.key).strip("/")) # 去除/
+        else:  # 文件
+            print('file: ' + obj.key)
+            download_to_local(bucket, str(obj.key), str(obj.key))
+            num += 1
+            print(num)
+
+
+'''
+下载文件到本地
+'''
+
+
+def download_to_local(bucket, object_name, local_file):
+    url = download_local_save_prefix + local_file
+    # 文件名称
+    file_name = url[url.rindex("/") + 1:]
+
+    file_path_prefix = url.replace(file_name, "")
+    #print(os.path.exists(file_path_prefix))
+    if False == os.path.exists(file_path_prefix):
+        os.makedirs(file_path_prefix)
+        #print("make dir" + file_path_prefix)
+
+    # 下载OSS文件到本地文件。如果指定的本地文件存在会覆盖，不存在则新建。
+    try:
+        bucket.get_object_to_file(object_name, download_local_save_prefix + local_file)
+    except:
+        print("ERR:")
+
+if __name__ == '__main__':
+    auth = oss2.Auth(accesskey_id, accesskey_secret)
+    bucket = oss2.Bucket(auth, endpoint, bucket_name)
+    # 单个文件夹下载
+    #prefix_all_list(bucket, "20201223")
+    root_directory_list(bucket)
+    print("end")
+
+```
