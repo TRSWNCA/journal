@@ -986,3 +986,15 @@ if __name__ == '__main__':
     print("end")
 
 ```
+
+### 10.28
+
+#### nvim-qt
+
+Set font size:
+
+add line in `ginit.vim`
+
+```vimscript
+execute join(["GuiFont! ", split(GuiFont, ":")[0], ":h14"], "")
+```
