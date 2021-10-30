@@ -998,3 +998,11 @@ add line in `ginit.vim`
 ```vimscript
 execute join(["GuiFont! ", split(GuiFont, ":")[0], ":h14"], "")
 ```
+
+### 10.30
+
+#### Python
+
+```python
+p = lamda a, b: print(a + 1, b + 1)
+```
