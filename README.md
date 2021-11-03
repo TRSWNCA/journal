@@ -1006,3 +1006,22 @@ execute join(["GuiFont! ", split(GuiFont, ":")[0], ":h14"], "")
 ```python
 p = lamda a, b: print(a + 1, b + 1)
 ```
+
+
+### 11.3
+
+#### Bash
+
+attention that `()` means using a son proccess to proceed, and `{}` just mean a code segment
+
+```bash
+DIR=./test
+  pwd
+  [ -d $DIR ] && (
+    cd $DIR
+    echo "Current Directory is `pwd`"
+    echo "`ls –l *.h | wc –l ` files (*.h)"
+    pwd
+    )
+pwd
+```
