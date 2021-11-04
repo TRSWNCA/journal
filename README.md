@@ -1025,3 +1025,13 @@ DIR=./test
     )
 pwd
 ```
+
+### 11.4
+
+#### Go Protobuf
+
+Install:
+
+```bash
+$ go get -d -u github.com/golang/protobuf/protoc-gen-go
+```
