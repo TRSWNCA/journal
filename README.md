@@ -1035,3 +1035,21 @@ Install:
 ```bash
 $ go get -d -u github.com/golang/protobuf/protoc-gen-go
 ```
+
+### 11.5
+
+#### Go Protobuf
+
+```bash
+$ make go
+mkdir -p tutorial # make directory for go package
+protoc $PROTO_PATH --go_out=tutorial addressbook.proto
+google/protobuf/timestamp.proto: File not found.
+addressbook.proto: Import "google/protobuf/timestamp.proto" was not found or had errors.
+addressbook.proto:49:3: "google.protobuf.Timestamp" is not defined.
+Makefile:32: recipe for target 'protoc_middleman_go' failed
+make: *** [protoc_middleman_go] Error 1
+```
+
+The problem is I forgot here
+> If you intend to use the included well known types then don't forget to copy the contents of the 'include' directory somewhere as well, for example into '/usr/local/include/'.
