@@ -1054,4 +1054,20 @@ make: *** [protoc_middleman_go] Error 1
 The problem is I forgot here
 > If you intend to use the included well known types then don't forget to copy the contents of the 'include' directory somewhere as well, for example into '/usr/local/include/'.
 
-### 11.14
+### 12.2
+
+#### docker
+
+Install:
+
+```bash
+$ curl -sSL https://get.daocloud.io/docker | sh
+```
+
+Try:
+
+```bash
+$ sudo docker run hello-world
+docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?.
+See 'docker run --help'.
+```
