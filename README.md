@@ -1122,3 +1122,13 @@ RUN yarn install --production
 CMD ["node", "src/index.js"]
 ```
 
+### 12.12
+
+#### Crontab
+
+```
+$ crontab -e
+# add line to the crontab
+$ crontabl -l
+# list the jobs
+```
