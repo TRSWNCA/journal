@@ -112,3 +112,6 @@ if __name__ == "__main__":
 #pip3 install aliyun-python-sdk-r-kvstore
 #pip3 install aliyun-python-sdk-core-v3
 ```
+
+Promise.reject(new Error(data.rmsg));
+
