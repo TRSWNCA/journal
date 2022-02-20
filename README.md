@@ -115,3 +115,45 @@ if __name__ == "__main__":
 
 Promise.reject(new Error(data.rmsg));
 
+### 2.20
+
+** Double click **
+
+```vue
+    hdlClick(node, data) {
+      const nodeData = node;
+      this.clickCount++;
+      const fnEmitDblClick = debounce(() => {
+        if (this.clickCount > 1) { // 双击跳转并设置下载的文件
+          this.changeNode(nodeData);
+          this.setDownloadFile(data);
+        }
+        this.clickCount = 0;
+      }, 200);
+      fnEmitDblClick();
+    },
+```
+
+** promt's validator **
+
+```vue
+      this.$prompt('新建' + (type === 'buildFolder' ? '文件夹名' : '文件名:'), '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        inputValidator(value) {
+          const nodeParent =
+              node.parent.data instanceof Array
+                ? node.parent.data
+                : node.parent.data.children;
+          const obj = nodeParent.find((item) => {
+            return (
+              item.isFile === node.data.isFile &&
+                item.label === value &&
+                item.id !== node.data.id
+            );
+          });
+          if (obj) {
+            return '已有' + (node.data.isFile ? '文件' : '文件夹') + '同名';
+          }
+        }
+```
