@@ -157,3 +157,12 @@ Promise.reject(new Error(data.rmsg));
           }
         }
 ```
+
+### 2.24
+
+**Git ^M to \n**
+
+```
+git config --global core.autocrlf false
+git config --global core.safecrlf true
+```
