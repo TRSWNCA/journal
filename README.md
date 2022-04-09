@@ -166,3 +166,46 @@ Promise.reject(new Error(data.rmsg));
 git config --global core.autocrlf false
 git config --global core.safecrlf true
 ```
+
+### 4.9
+
+**Python unzip** 
+
+```python
+import os
+import shutil
+import zipfile
+from os.path import join, getsize
+
+def unzip_file(zip_src, dst_dir):
+    if os.path.exists(zip_src):
+        r = zipfile.is_zipfile(zip_src)
+        if r:
+            print("unzip: ", zip_src)
+            fz = zipfile.ZipFile(zip_src, 'r')
+            for file in fz.namelist():
+                fz.extract(file, dst_dir)
+        else:
+            print('This is not zip')
+            return
+        try:
+            filename = dst_dir.split('/')[-1];
+            if os.path.exists(dst_dir + "/index.py"):
+                os.rename(dst_dir + "/index.py", dst_dir + "/" + filename + ".py")
+            else:
+                print("watchout: ", dst_dir + "/index.py")
+        except:
+            pass
+
+def doit(path, father):
+    if os.path.exists(path):
+        if os.path.isfile(path):
+            unzip_file(path, father)
+            return
+        print("doit:", path)
+        for filename in os.listdir(path):
+            doit(path + "/" + filename, path)
+
+doit("./userLibrary", ".")
+```
+
