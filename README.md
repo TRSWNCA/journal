@@ -8,7 +8,6 @@
 
 **Solution**: Use separate icon font for Polybar. Refer to [Nerd Fonts Icon Problem in Polybar](https://polybar.readthedocs.io/en/stable/user/fonts/nerd-fonts.html).
 
-
 Install the icon-only font `Symbols Nerd Font`
 
 ```bash
@@ -40,3 +39,34 @@ font-1 = "Symbols Nerd Font Mono:size=16"
 }
 ```
 
+### August
+
+#### Rofi
+
+**Need**: Looking up dictionary with Rofi.
+
+**Solution**: With Rofi dmenu mode, we can easily add scripts that can be found by rofi.
+
+Add a query scripts with [kd](https://github.com/Karmenzind/kd)
+
+```bash
+#!/bin/bash
+# Get Queries
+query_word=$(rofi -dmenu -p "dict")
+
+# Execute
+termite -r pop-up -e "kd $query_word"
+```
+
+And move it into one of the paths shown by:
+
+```bash
+$ G_MESSAGES_DEBUG=Modes.Run rofi -show run -no-config
+```
+
+And then try rofi
+
+```bash
+$ rofi -combi-modi run,window,drun -show combi -modi combi -dpi 1
+
+```
