@@ -70,3 +70,47 @@ And then try rofi
 $ rofi -combi-modi run,window,drun -show combi -modi combi -dpi 1
 
 ```
+
+### User systemctl 
+
+**Need**: Update journal regularly.
+
+**Solution**: Add a user system service at `.config/systemd/user/`.
+
+File `daily-jobs.service`:
+
+```txt
+[Unit]
+Description=Daily Jobs Runner
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/cyc/Projects/daily-jobs/bin/run-all-jobs.sh
+WorkingDirectory=/home/cyc/Projects/daily-jobs
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=timers.target
+```
+
+File `daily-jobs.timer`:
+
+```txt
+[Unit]
+Description=Run Daily Jobs at 12:00 PM
+
+[Timer]
+OnCalendar=12:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+```
+
+Start the service:
+
+```bash
+$ systemctl --user enable daily-jobs.service
+```
