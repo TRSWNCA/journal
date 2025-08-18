@@ -71,52 +71,56 @@ $ rofi -combi-modi run,window,drun -show combi -modi combi -dpi 1
 
 ```
 
-### User systemctl 
+Here’s your rewritten journal entry in the new structured format, with added clarity, context, and tags:
 
-**Need**: Update journal regularly.
+---
 
-**Solution**: Add a user system service at `.config/systemd/user/`.
+#### **Systemd: Automate Daily Journal Updates**  
+**Context**: Needed to run a daily script to update my coding journal without manual intervention.  
+**Need**: Schedule regular journal updates via a user-level systemd service (no root required).  
 
-File `daily-jobs.service`:
+**Solution**: Created a systemd timer and service for my user:  
+```ini
+# ~/.config/systemd/user/daily-jobs.service  
+[Unit]  
+Description=Daily Jobs Runner  
+After=network.target  
 
-```txt
-[Unit]
-Description=Daily Jobs Runner
-After=network.target
+[Service]  
+Type=oneshot  
+ExecStart=/home/cyc/Projects/daily-jobs/bin/run-all-jobs.sh  
+WorkingDirectory=/home/cyc/Projects/daily-jobs  
+StandardOutput=journal  # Logs to user journal  
+StandardError=journal  
 
-[Service]
-Type=oneshot
-ExecStart=/home/cyc/Projects/daily-jobs/bin/run-all-jobs.sh
-WorkingDirectory=/home/cyc/Projects/daily-jobs
-StandardOutput=journal
-StandardError=journal
+[Install]  
+WantedBy=timers.target  
+```  
+```ini
+# ~/.config/systemd/user/daily-jobs.timer  
+[Unit]  
+Description=Run Daily Jobs at 12:00 PM  
 
-[Install]
-WantedBy=timers.target
-```
+[Timer]  
+OnCalendar=12:00:00  # Triggers daily at noon  
+Persistent=true      # Run if missed during downtime  
 
-File `daily-jobs.timer`:
-
-```txt
-[Unit]
-Description=Run Daily Jobs at 12:00 PM
-
-[Timer]
-OnCalendar=12:00:00
-Persistent=true
-
-[Install]
-WantedBy=timers.target
-```
-
-Start the service:
-
+[Install]  
+WantedBy=timers.target  
+```  
+**Activation**:  
 ```bash
-$ systemctl --user enable daily-jobs.service
-```
+systemctl --user enable --now daily-jobs.timer  # Start and enable  
+```  
 
-Here's your structured journal entry based on the OpenVPN and CIFS mount troubleshooting:
+**Result**:  
+- Script now runs daily at 12:00 PM (verify with `journalctl --user -u daily-jobs`).  
+- Logs appear in the user journal (`--user-unit=daily-jobs`).  
 
+**Resources**:  
+- [Systemd User Services Docs](https://wiki.archlinux.org/title/Systemd/User)  
+
+#systemd #automation #linux  
 ---
 
 #### Linux: Automount CIFS Share After OpenVPN Connection  
