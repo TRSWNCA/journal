@@ -1,8 +1,8 @@
-## 2025
+# 2025
 
-### July
+## July
 
-#### Polybar
+### Polybar
 
 **Problem**: The icon is too small in the Polybar.
 
@@ -25,7 +25,7 @@ font-0 = monospace;2
 font-1 = "Symbols Nerd Font Mono:size=16"
 ```
 
-#### Neovim
+### Neovim
 
 **Problem**: The parser of Neovim are conflict with that of nvim-treesitter plugin
 
@@ -39,9 +39,9 @@ font-1 = "Symbols Nerd Font Mono:size=16"
 }
 ```
 
-### August
+## August
 
-#### Rofi
+### Rofi
 
 **Need**: Looking up dictionary with Rofi.
 
@@ -68,14 +68,12 @@ And then try rofi
 
 ```bash
 $ rofi -combi-modi run,window,drun -show combi -modi combi -dpi 1
-
 ```
-
-Here’s your rewritten journal entry in the new structured format, with added clarity, context, and tags:
 
 ---
 
-#### **Systemd: Automate Daily Journal Updates**  
+### **Systemd: Automate Daily Journal Updates**  
+
 **Context**: Needed to run a daily script to update my coding journal without manual intervention.  
 **Need**: Schedule regular journal updates via a user-level systemd service (no root required).  
 
@@ -108,6 +106,7 @@ Persistent=true      # Run if missed during downtime
 [Install]  
 WantedBy=timers.target  
 ```  
+
 **Activation**:  
 ```bash
 systemctl --user enable --now daily-jobs.timer  # Start and enable  
@@ -121,9 +120,10 @@ systemctl --user enable --now daily-jobs.timer  # Start and enable
 - [Systemd User Services Docs](https://wiki.archlinux.org/title/Systemd/User)  
 
 #systemd #automation #linux  
+
 ---
 
-#### Linux: Automount CIFS Share After OpenVPN Connection  
+### Linux: Automount CIFS Share After OpenVPN Connection  
 
 **Need**: Automatically mount a network share (`//192.168.1.3/Team_Folder`) only after a VPN connection establishes. Systemd dependencies and credential security were key requirements.  
 
@@ -167,7 +167,7 @@ systemctl --user enable --now daily-jobs.timer  # Start and enable
 
 #linux #systemd #vpn #cifs #automount  
 
-#### Git: Modify author information
+### Git: Modify author information
 
 **Context**: In a Git - based project, there were multiple commits made with an incorrect author. To ensure proper attribution, it was necessary to change the author of these commits to `Chen Yichi <trswnca@yeah.net>`.
 
@@ -209,3 +209,6 @@ git push -f origin master
 **Result**: The author information of the specified six commits in the local and remote Git repository should now show as `Chen Yichi <trswnca@yeah.net>`. Verification can be done by running `git log` in the local repository and checking the author information of the relevant commits. Also, visit the remote repository on the hosting platform (e.g., GitHub) and check the commit history there.
 
 #git #coding #author
+
+---
+
