@@ -114,3 +114,51 @@ Start the service:
 ```bash
 $ systemctl --user enable daily-jobs.service
 ```
+
+Here's your structured journal entry based on the OpenVPN and CIFS mount troubleshooting:
+
+---
+
+#### Linux: Automount CIFS Share After OpenVPN Connection  
+
+**Need**: Automatically mount a network share (`//192.168.1.3/Team_Folder`) only after a VPN connection establishes. Systemd dependencies and credential security were key requirements.  
+
+**Solution**:  
+1. **Credential File Setup**:  
+   ```bash
+   sudo mkdir /etc/credentials
+   sudo tee /etc/credentials/tank-cifs.cred <<EOF
+   username=<name>
+   password=<password>
+   EOF
+   sudo chmod 600 /etc/credentials/tank-cifs.cred
+   ```
+
+2. **Systemd Mount Unit**:  
+   ```ini
+   # /etc/systemd/system/mnt-tank.mount
+   [Unit]
+   Description=Mount Team_Folder
+   Requires=tank-openvpn.service
+   After=tank-openvpn.service network-online.target
+
+   [Mount]
+   What=//192.168.1.3/Team_Folder
+   Where=/mnt/tank
+   Type=cifs
+   Options=vers=3.0,credentials=/etc/credentials/tank-cifs.cred,uid=1000,gid=1000
+   ```
+
+**Result**:  
+- Successfully mounts after VPN establishes (`systemctl status mnt-tank.mount` shows active)  
+- Verified with `mount | grep /mnt/tank` and file access tests  
+
+**Notes**:  
+- Requires `network-online.target` for reliable startup  
+- `_netdev` mount option is not needed since OpenVPN startup after the network is ready
+
+**Resources**:  
+- [systemd.mount docs](https://www.freedesktop.org/software/systemd/man/systemd.mount.html)  
+- [CIFS mount options](https://linux.die.net/man/8/mount.cifs)  
+
+#linux #systemd #vpn #cifs #automount  
