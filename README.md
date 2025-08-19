@@ -170,6 +170,8 @@ systemctl --user enable --now daily-jobs.timer  # Start and enable
 
 #linux #systemd #vpn #cifs #automount  
 
+---
+
 ### Git: Modify author information
 
 **Context**: In a Git - based project, there were multiple commits made with an incorrect author. To ensure proper attribution, it was necessary to change the author of these commits to `Chen Yichi <trswnca@yeah.net>`.
@@ -215,7 +217,7 @@ git push -f origin master
 
 ---
 
-### Proxy: Cursor Editor Network Fix  
+### Cursor: Bypass model region-blocking
 
 **Context**: Cursor’s AI models are region-locked, requiring a proxy for access in unsupported regions.
 
@@ -225,11 +227,10 @@ git push -f origin master
 - Needed a native proxy solution to avoid Electron compatibility issues.
 
 **Solution/Approach**:
-Configure Cursor’s built-in proxy:  
+Configure Cursor’s proxy in user `settings.json` (`Ctrl + Shift + P` and choose `Preferences: Open User Settings (JSON)`):  
    ```json
-   // In settings.json:
-   "http.proxy": "http://127.0.0.1:20171",
-   "http.protocol": "http1.1"  // Disable HTTP/2
+    "http.proxy": "http://127.0.0.1:20171",
+    "cursor.general.disableHttp2": true
    ```  
 
 #proxy #electron #cursor #linux #debugging  
