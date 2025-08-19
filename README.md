@@ -25,6 +25,9 @@ font-0 = monospace;2
 font-1 = "Symbols Nerd Font Mono:size=16"
 ```
 
+
+---
+
 ### Neovim
 
 **Problem**: The parser of Neovim are conflict with that of nvim-treesitter plugin
@@ -209,6 +212,27 @@ git push -f origin master
 **Result**: The author information of the specified six commits in the local and remote Git repository should now show as `Chen Yichi <trswnca@yeah.net>`. Verification can be done by running `git log` in the local repository and checking the author information of the relevant commits. Also, visit the remote repository on the hosting platform (e.g., GitHub) and check the commit history there.
 
 #git #coding #author
+
+---
+
+### Proxy: Cursor Editor Network Fix  
+
+**Context**: Cursor’s AI models are region-locked, requiring a proxy for access in unsupported regions.
+
+**Problem/Need**:  
+- While a system-wide TUN proxy works, it’s not an elegant solution.
+- Attempting to use `proxychains` caused crashes (`zygote_host_impl_linux.cc` errors) and network timeouts.
+- Needed a native proxy solution to avoid Electron compatibility issues.
+
+**Solution/Approach**:
+Configure Cursor’s built-in proxy:  
+   ```json
+   // In settings.json:
+   "http.proxy": "http://127.0.0.1:20171",
+   "http.protocol": "http1.1"  // Disable HTTP/2
+   ```  
+
+#proxy #electron #cursor #linux #debugging  
 
 ---
 
