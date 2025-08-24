@@ -236,4 +236,39 @@ Configure Cursor’s proxy in user `settings.json` (`Ctrl + Shift + P` and choos
 #proxy #electron #cursor #linux #debugging  
 
 ---
+### Certbot: SSL Auto-renewal
 
+**Context**: Managing HTTPS certificates for multiple domains via Certbot, previously done manually. The system lacked default renewal tasks.  
+
+**Problem/Need**: Automate certificate renewal monthly via cron while preserving custom Nginx paths (`/usr/local/nginx/conf`), ensuring zero downtime.  
+
+**Solution/Approach**:  
+1. **Create cron job** (run as root):  
+   ```bash
+   sudo crontab -e
+   ```  
+2. **Monthly renewal** + safety checks:  
+   ```bash
+   # Primary: Renew on 1st monthly, quiet mode, reload Nginx
+   15 3 1 * * /usr/bin/certbot renew --quiet --nginx-server-root /usr/local/nginx/conf --deploy-hook "/usr/local/nginx/sbin/nginx -s reload"
+
+   # Fallback: Force renewal on 15th if cert expires in ≤30 days
+   0 4 15 * * /usr/bin/bash -c '/usr/bin/certbot certificates | grep "VALID: 30" && /usr/bin/certbot renew --force-renewal --nginx-server-root /usr/local/nginx/conf --deploy-hook "/usr/local/nginx/sbin/nginx -s reload"'
+   ```  
+   Key arguments:  
+   - `--nginx-server-root`: Custom Nginx config path  
+   - `--deploy-hook`: Reload Nginx without downtime  
+
+**Result**:  
+- Certificates auto-renew monthly.  
+- **Verification**:  
+  ```bash
+  sudo certbot certificates  # Check "Expiry Date"  
+  sudo tail -f /var/log/letsencrypt/letsencrypt.log  # Monitor renewals
+  ```  
+
+**Resources**:  
+- [Certbot Renewal Docs](https://eff-certbot.readthedocs.io/en/stable/using.html#renewing-certificates)  
+- [crontab.guru](https://crontab.guru) (schedule helper)  
+
+#ssl #nginx #automation #cron #letsencrypt
