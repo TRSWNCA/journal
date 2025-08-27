@@ -272,3 +272,21 @@ Configure Cursor’s proxy in user `settings.json` (`Ctrl + Shift + P` and choos
 - [crontab.guru](https://crontab.guru) (schedule helper)  
 
 #ssl #nginx #automation #cron #letsencrypt
+
+---
+### Windows: Learn Windows 10 & Office Activation
+
+**Context**: Automating system activation bypassing manual processes using a third-party script in an elevated PowerShell environment.  
+**Problem/Need**: Simplify activation of Windows 10 and Office by executing remote scripts to handle productId keys and licensing workflows.  
+**Solution/Approach**:  
+```powershell  
+# Run PowerShell as Administrator  
+$irm https://get.activated.win | iex  
+```  
+*Note: `irm` (Invoke-RestMethod) downloads the script, and `iex` (Invoke-Expression) executes it.*  
+
+**Resources**:  
+- [Script Source](https://get.activated.win)  
+- [Project Homepage](https://massgrave.dev)  
+
+#tags #windows10 #msoffice #powershell #activation #scripting
