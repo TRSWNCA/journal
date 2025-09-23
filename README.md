@@ -290,3 +290,31 @@ $irm https://get.activated.win | iex
 - [Project Homepage](https://massgrave.dev)  
 
 #tags #windows10 #msoffice #powershell #activation #scripting
+
+---
+
+### File Encoding: Zip File Extraction  
+**Context**: Extracted a ZIP file (`【学生版本】研究生.zip`) in a Linux terminal (zsh), but file/directory names displayed as garbled Cyrillic text (`б╛╤з╔·░ц▒╛б┐...`) instead of Chinese characters.  
+**Problem/Need**: Restore correct filenames when unzipping archives created in Windows (GBK encoding) on UTF-8 systems.  
+
+**Solution/Approach**:  
+1. Specify encoding during extraction:  
+```bash
+unzip -O GBK "【学生版本】研究生.zip"
+```  
+2. If already extracted, fix garbled names recursively using `convmv`:  
+```bash
+sudo apt install convmv  # Install tool
+convmv -f GBK -t UTF-8 --notest -r *
+```
+
+**Result**: Filenames restored to correct Chinese characters. Verified via `ls` showing readable names.  
+
+**Notes**:  
+- Always wrap filenames with spaces/symbols in quotes: `"file (1).zip"`  
+- `unar -e GBK` is a robust alternative for multi-encoding archives  
+
+**Resources**:  
+[Convmv documentation](https://www.j3e.de/linux/convmv/)  
+[ZIP encoding issues](https://wiki.archlinux.org/title/Zip#Encoding_issues)  
+#linux #encoding #filesystem #zsh
