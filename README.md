@@ -293,7 +293,7 @@ $irm https://get.activated.win | iex
 
 ---
 
-### File Encoding: Zip File Extraction  
+### Zip File Extraction: GPK File Encoding
 **Context**: Extracted a ZIP file (`【学生版本】研究生.zip`) in a Linux terminal (zsh), but file/directory names displayed as garbled Cyrillic text (`б╛╤з╔·░ц▒╛б┐...`) instead of Chinese characters.  
 **Problem/Need**: Restore correct filenames when unzipping archives created in Windows (GBK encoding) on UTF-8 systems.  
 
