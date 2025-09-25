@@ -318,3 +318,37 @@ convmv -f GBK -t UTF-8 --notest -r *
 [Convmv documentation](https://www.j3e.de/linux/convmv/)  
 [ZIP encoding issues](https://wiki.archlinux.org/title/Zip#Encoding_issues)  
 #linux #encoding #filesystem #zsh
+
+--- 
+
+### OpenTabletDriver Autostart
+**Context**: Setting up OpenTabletDriver daemon auto-launch on a systemd-based Linux system where the service failed to start automatically due to unmet display server conditions.  
+
+**Problem/Need**: The `opentabletdriver.service` failed to start because it required `DISPLAY` or `WAYLAND_DISPLAY` environment variables that weren't available when the systemd user service initialized.  
+
+**Solution/Approach**: Created a systemd service override to explicitly set environment variables and remove restrictive conditions:  
+```bash
+# Create override directory and config
+mkdir -p ~/.config/systemd/user/opentabletdriver.service.d/
+cat <<EOF > ~/.config/systemd/user/opentabletdriver.service.d/override.conf
+[Unit]
+# Remove failing condition checks
+ConditionEnvironment=
+[Service]
+# Explicitly set default X11 display (Wayland requires 'WAYLAND_DISPLAY=wayland-0')
+Environment="DISPLAY=${DISPLAY:-:0}"
+EOF
+# Apply changes
+systemctl --user daemon-reload
+systemctl --user enable --now opentabletdriver.service
+```
+
+**Result**: Service starts successfully after login (`systemctl --user status opentabletdriver.service` shows active/running). Verified tablet functionality responds immediately upon login.  
+
+**Notes**:  
+- Wayland users must replace `DISPLAY` with `WAYLAND_DISPLAY=wayland-0`  
+
+**Resources**:  
+[Original service file](file:///usr/lib/systemd/user/opentabletdriver.service)  
+[Systemd environment variables](https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html#Environment)  
+#linux #systemd #opentabletdriver #autostart
