@@ -327,12 +327,4 @@ def main():
         print("This will sync your README.md posts to GitHub Gists")
 
 if __name__ == "__main__":
-<<<<<<< HEAD
-<<<<<<< HEAD
     main()
-=======
-    main()
->>>>>>> ebd5295 (updated by daily-jobs.service)
-=======
-    main()
->>>>>>> 06ef7dd (Remove hardcoded GitHub token from default config)
