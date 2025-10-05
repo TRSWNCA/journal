@@ -1,0 +1,23 @@
+[project]
+name = "journal-sync"
+version = "0.1.0"
+description = "Simple tool to sync README.md posts to GitHub Gists"
+authors = [
+    {name = "Chen Yichi", email = "trswnca@yeah.net"}
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "rich>=13.0.0",
+    "requests>=2.28.0",
+]
+
+[project.scripts]
+journal-sync = "journal_sync:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = []

@@ -352,3 +352,63 @@ systemctl --user enable --now opentabletdriver.service
 [Original service file](file:///usr/lib/systemd/user/opentabletdriver.service)  
 [Systemd environment variables](https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html#Environment)  
 #linux #systemd #opentabletdriver #autostart
+
+---
+
+## October
+### Build Python on musl
+
+#### Docker error
+
+**Context**: Working with python-build-standalone project on Manjaro Linux, attempting to build Python for x86_64-unknown-linux-musl target. The Docker build process was failing during package installation phase in Debian-based containers.
+
+**Problem/Need**: 
+- Docker build failing with "Unable to locate package" errors for essential build tools
+- Outdated Debian Jessie snapshot repositories from March 2023 were no longer accessible
+- Multiple packages (bzip2, ca-certificates, curl, gcc, make, etc.) could not be installed in Docker containers
+
+**Solution/Approach**:
+
+1. **Updated Debian base image and repositories**:
+   
+   In `cpython-unix/base.Dockerfile`:
+```dockerfile
+   # Changed from outdated Jessie with snapshots:
+   FROM debian@sha256:32ad5050caffb2c7e969dac873bce2c370015c2256ff984b70c1c08b3a2816a0
+   
+   # To current Debian 11:
+   FROM debian:11-slim
+```
+   Simplified repository configuration by removing complex snapshot URLs and using standard Debian repos.
+
+2. **Fixed package compatibility**:
+   
+   In `cpython-unix/build.Dockerfile`:
+```dockerfile
+   # Changed incompatible package name:
+   perl      # Not available in newer Debian
+   perl-base # Available replacement
+```
+3. **Cleared Docker cache and rebuilt**:
+```bash
+   docker system prune -f
+   ./build-linux.py --target x86_64-unknown-linux-musl
+```
+**Result**: 
+- Python host compilation proceeds normally with all required build tools installed
+- Extension modules compile successfully, confirming all dependencies are available
+- Build process now progresses through Python 3.11 compilation as expected
+
+**Notes**: 
+- Debian Jessie snapshot repositories are unreliable; using current stable releases is more maintainable
+- Package names may differ between Debian versions (perl vs perl-base)
+- Docker build cache can persist problematic layers, requiring explicit cleanup
+
+**Resources**: 
+- [Docker proxy configuration documentation](https://docs.docker.com/network/proxy/)
+- [Debian package archive documentation](https://www.debian.org/distrib/packages)
+- [python-build-standalone project](https://github.com/indygreg/python-build-standalone)
+
+#docker #debian #package-management #build-systems #proxy-troubleshooting
+
+---
