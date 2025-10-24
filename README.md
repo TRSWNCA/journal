@@ -412,3 +412,38 @@ systemctl --user enable --now opentabletdriver.service
 #docker #debian #package-management #build-systems #proxy-troubleshooting
 
 ---
+
+### Bluetooth Trust: Resolving Auto-Connect Failure  
+**Context**: Linux Bluetooth service was active, but paired Sony WH-1000XM4 headphones wouldn't automatically connect on boot.  
+**Problem/Need**: Device showed "Paired: yes" but **"Trusted: no"** in `bluetoothctl`, causing a "paired but not connected" state that required manual reconnection.  
+
+**Solution/Approach**:  
+1. Verify Bluetooth service status:  
+```bash
+sudo systemctl status bluetooth.service  # Confirmed service was active/running
+```  
+2. Use `bluetoothctl` to mark the device as trusted:  
+```bash
+bluetoothctl
+[WH-1000XM4]> info 88:C9:E8:E9:44:90  # Checked "Trusted: no"
+[WH-1000XM4]> trust 88:C9:E8:E9:44:90  # Set device to trusted
+[CHG] Device 88:C9:E8:E9:44:90 Trusted: yes  # Success confirmation
+```  
+3. Restart the Bluetooth service to apply changes:  
+```bash
+sudo systemctl restart bluetooth  # Required after trust modification
+```
+
+**Result**: Device now shows **`Trusted: yes`** in `bluetoothctl` info output. Verified by rebooting and confirming automatic connection (no manual `connect` command needed).  
+
+**Notes**:  
+- `trust` is mandatory for auto-connect even if paired; Linux won't automatically connect without this flag.  
+- `systemctl restart bluetooth` is required after trust-state changes.  
+- TODOs: Monitor `/var/log/syslog` if authentication errors persist.  
+
+**Resources**:  
+- `man bluetoothd`: [bluetoothd(8) docs](https://manpages.debian.org/bluetoothd)  
+
+#linux #bluetooth #bluetoothctl #auto-connect
+
+---
